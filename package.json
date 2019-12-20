@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "Core JS 101",
   "scripts": {
-    "test": "npm run lint && mocha test/04-date-tests.js",
+    "test5": "npm run lint && mocha test/05*.js",
+    "test6": "npm run lint && mocha test/06*.js",
+    "test7": "npm run lint && mocha test/07*.js",
+    "test8": "npm run lint && mocha test/08*.js",
+    "test9": "npm run lint && mocha test/09*.js",
+    "test": "npm run lint && mocha test",
     "lint": "node node_modules/eslint/bin/eslint.js ./src"
   },
   "author": "aorgish, mikhama",

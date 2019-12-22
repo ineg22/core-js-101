@@ -430,8 +430,22 @@ function getCommonDirectoryPath(pathes) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(a, b) {
+  const aRows = a.length;
+  const aCols = a[0].length;
+  const bCols = b[0].length;
+  const m = new Array(aRows);
+
+  for (let r = 0; r < aRows; r += 1) {
+    m[r] = new Array(bCols);
+    for (let c = 0; c < bCols; c += 1) {
+      m[r][c] = 0;
+      for (let i = 0; i < aCols; i += 1) {
+        m[r][c] += a[r][i] * b[i][c];
+      }
+    }
+  }
+  return m;
 }
 
 /**
@@ -464,8 +478,30 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(arr) {
+  const iks = (el) => el === 'X';
+  const zero = (el) => el === '0';
+
+  const winArr = [];
+  for (let i = 0; i < 3; i += 1) {
+    const col = [];
+    const raw = [];
+    for (let j = 0; j < 3; j += 1) {
+      col.push(arr[j][i]);
+      raw.push(arr[i][j]);
+    }
+    winArr.push(col);
+    winArr.push(raw);
+  }
+  winArr.push([arr[0][0], arr[1][1], arr[2][2]]);
+  winArr.push([arr[0][2], arr[1][1], arr[2][0]]);
+
+  for (let i = 0; i < winArr.length; i += 1) {
+    if (winArr[i].every(iks) || winArr[i].every(zero)) {
+      return winArr[i][0];
+    }
+  }
+  return undefined;
 }
 
 module.exports = {
